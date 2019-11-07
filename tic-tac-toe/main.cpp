@@ -1,17 +1,13 @@
 #include<iostream>
 #include<stdlib.h>
-
-/* struct index
-{
-    int row,colum;
-};*/
+#include <cstdlib>
 
 int choice;
-
+int row,columns;
 char board_ele[3][3]={'1','2','3','4','5','6','7','8','9'};
 
 void display_board(){
-    system("CLS");
+    system("clear");
     std::cout<<"\n\tthe board:\n";
 
     std::cout<<"     |     |     \n";
@@ -30,122 +26,90 @@ void display_board(){
 }
 
 
-/* struct index find_index_update(const char* a[],int n,int elem)
+
+void player_row(int choice,char flag)
 {
-    
-
-	int i = 0;
-    int j=0;
-	while (i < n)
-	{
-        while (j<n)
-        {
-        
-		if (a[i][j] == elem) {
-			break;
-		}
-        else
-        {
-            j++;
-        }
-        }
-		i++;
-	}
-    
-    struct index p;
-	if(i<n&&j<n)
-    {
-        p.row=i;
-        p.colum=j;
-        return p;
-    }
-    
-    p.row=0;
-    p.colum=0;
-    return p;
-    
-    
-}*/
-
-void player_1()
-{
-    std::cin>>choice;
-
     switch (choice)
     {
-       case 1:board_ele[0][0]='X';
-              break;
-       case 2:board_ele[0][1]='X';
-              break;
-       case 3:board_ele[0][2]='X';
-              break;
-        case 4:board_ele[1][0]='X';
-              break;
-        case 5:board_ele[1][1]='X';
-              break;
-        case 6:board_ele[1][2]='X';
-              break;
-        case 7:board_ele[2][0]='X';
-              break;
-        case 8:board_ele[2][1]='X';
-              break;
-        case 9:board_ele[2][2]='X';
-              break;
-              
-        default:std::cout<<"invalid option";            
+    case 1: row=0,columns=0;
+            board_ele[row][columns]=flag;
+            break;
+    case 2: row=0,columns=1;
+            board_ele[row][columns]=flag;
+            break;
+    case 3: row=0,columns=2;
+            board_ele[row][columns]=flag;
+            break;
+    case 4: row=1,columns=0;
+            board_ele[row][columns]=flag;
+            break;
+    case 5: row=1,columns=1;
+            board_ele[row][columns]=flag;
+            break;
+    case 6: row=1,columns=2;
+            board_ele[row][columns]=flag;
+            break;
+    case 7: row=2,columns=0;
+            board_ele[row][columns]=flag;
+            break;
+    case 8: row=2,columns=1;
+            board_ele[row][columns]=flag;
+            break;
+    case 9: row=2,columns=2;
+            board_ele[row][columns]=flag;
+            break;                                                                
+    
+    default:
+        break;
     }
+    
+           
+           
 }
-
-void player_2()
-{
-    std::cin>>choice;
-
-    switch (choice)
-    {
-       case 1:board_ele[0][0]='O';
-              break;
-       case 2:board_ele[0][1]='O';
-              break;
-       case 3:board_ele[0][2]='O';
-              break;
-        case 4:board_ele[1][0]='O';
-              break;
-        case 5:board_ele[1][1]='O';
-              break;
-        case 6:board_ele[1][2]='O';
-              break;
-        case 7:board_ele[2][0]='O';
-              break;
-        case 8:board_ele[2][1]='O';
-              break;
-        case 9:board_ele[2][2]='O';
-              break;
-              
-        default:std::cout<<"invalid option";            
-    }
-}
-
 void player_turn()
 {
-     int flag=0;
-     if(flag==0)
+     char flag='O';
+     if(flag=='O')
      {
-        player_1(); 
+        std::cout<<"plaer 1 turn:";
+        std::cin>>choice;   
+        player_row(choice,flag);
 
         display_board();
         
-        flag=1;
+        
      }
-     else if(flag==1)
+     flag='X';
+     if(flag=='X')
      {
-        player_2();
+        std::cout<<"plaer 2 turn:";
+        std::cin>>choice;   
+        player_row(choice,flag);
 
         display_board();
 
-        flag=0;
-     }   
+        
+     } 
+     flag='O';  
 }
-
+bool game_rule()
+{
+       
+   if ((board_ele[0][0]=='X'&&board_ele[1][1]=='X'&&board_ele[2][2]=='X')||(board_ele[0][0]=='X'&&board_ele[0][1]=='X'&&board_ele[0][2]=='X')||(board_ele[1][0]=='X'&&board_ele[1][1]=='X'&&board_ele[1][2]=='X')||(board_ele[2][0]=='X'&&board_ele[2][1]=='X'&&board_ele[2][2]=='X')||(board_ele[0][0]=='X'&&board_ele[1][0]=='X'&&board_ele[2][0]=='X')||(board_ele[0][1]=='X'&&board_ele[1][1]=='X'&&board_ele[2][1]=='X')||(board_ele[0][2]=='X'&&board_ele[1][2]=='X'&&board_ele[2][2]=='X')||(board_ele[0][2]=='X'&&board_ele[1][1]=='X'&&board_ele[2][0]=='X'))
+   {
+           return true;
+   }
+   else if ((board_ele[0][0]=='O'&&board_ele[1][1]=='O'&&board_ele[2][2]=='O')||(board_ele[0][0]=='O'&&board_ele[0][1]=='O'&&board_ele[0][2]=='O')||(board_ele[1][0]=='O'&&board_ele[1][1]=='O'&&board_ele[1][2]=='O')||(board_ele[2][0]=='O'&&board_ele[2][1]=='O'&&board_ele[2][2]=='O')||(board_ele[0][0]=='O'&&board_ele[1][0]=='O'&&board_ele[2][0]=='O')||(board_ele[0][1]=='O'&&board_ele[1][1]=='O'&&board_ele[2][1]=='O')||(board_ele[0][2]=='O'&&board_ele[1][2]=='O'&&board_ele[2][2]=='O')||(board_ele[0][2]=='O'&&board_ele[1][1]=='O'&&board_ele[2][0]=='O'))
+   {
+           return true;
+   }
+   else
+   {
+           return false;
+   }
+   
+   
+}
 
 int main(){
     int breake;
@@ -158,18 +122,29 @@ int main(){
     std::cout<<"\n\t\tplayer 2:[O]\n"<<std::endl;
     
     display_board();
-    
-    //struct index updater;
 
-   while (true)
-   {
-       player_turn();
+  
+       for (int i = 0; i < 9; i++)
+       {
+             if(game_rule()==true)
+             {
+                     std::cout<<"player 1 won";
+                     break;
+             }
+             if(game_rule()==true)
+             {
+                 std::cout<<"player 2 won";
+                 break;    
+             }
+             player_turn();
+             
+             
+             
+       }
+
        
-       std::cout<<"if want to break;";
-       std::cin>>breake;
-       if(breake==1)break;
-   }
-   
+       
+     
 
    
     
