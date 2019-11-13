@@ -1,7 +1,6 @@
 #include"start.h"
 
-int main(){
+int main()
+{
    start::start();
-
-   
 }

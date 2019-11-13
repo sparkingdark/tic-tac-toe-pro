@@ -7,9 +7,15 @@ using namespace board;
 using namespace game;
 namespace start
 {
-    void start(){
+  void start(){  
+
+while(true){
+
+   try
+       {
+        
         display_board();
-     for (int i = 0; i < 9; i++)
+    
        {
              if(game_rule()==true)
              {
@@ -25,4 +31,14 @@ namespace start
         }
 
     }
+    
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+        
+    }
+    
+  }
+   
+}
 } // namespace start
